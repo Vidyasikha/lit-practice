@@ -1,4 +1,4 @@
-import{f as y,B as S}from"./Button-BcbXWtVk.js";import"./lit-element-CvbkUQPs.js";const x={title:"Example/Button",tags:["autodocs"],render:b=>S(b),argTypes:{backgroundColor:{control:"color"},size:{control:{type:"select"},options:["small","medium","large"]}},args:{onClick:y()}},r={args:{primary:!0,label:"Button"}},a={args:{label:"Button"}},e={args:{size:"large",label:"Button"}},s={args:{size:"small",label:"Button"}};var o,t,n;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+import{f as y,B as S}from"./Button-BksXP_lA.js";import"./lit-element-OkYj8a8b.js";const x={title:"Example/Button",tags:["autodocs"],render:b=>S(b),argTypes:{backgroundColor:{control:"color"},size:{control:{type:"select"},options:["small","medium","large"]}},args:{onClick:y()}},r={args:{primary:!0,label:"Button"}},a={args:{label:"Button"}},e={args:{size:"large",label:"Button"}},s={args:{size:"small",label:"Button"}};var o,t,n;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
   args: {
     primary: true,
     label: 'Button'
