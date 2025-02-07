@@ -1,0 +1,154 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import {MyComponent} from './components/intro'
+
+<Meta title="Intro" />
+
+# Components Overview
+
+A **Lit component** is a reusable UI element, much like a custom HTML element, that holds state and reacts to user input. It fires events and updates its UI when its state changes.
+
+## Core Concepts
+
+### 1. **Defining a Component**
+Lit components are custom elements. You define them using JavaScript/TypeScript and register them with the browser.
+
+### 2. **Rendering**
+Each component has a `render` method where you define its HTML template. The method gets called to render the component's content.
+
+### 3. **Reactive Properties**
+A component has reactive properties which hold its state. When the state changes, the component re-renders automatically.
+
+### 4. **Styles**
+You can define encapsulated styles inside a component to style its appearance without affecting the global styles.
+
+### 5. **Lifecycle**
+Lit provides lifecycle callbacks, such as when the component is added to a page or updated, so you can run custom code at these points.
+
+## Example Component
+### TypeScript example
+```typescript
+// Import necessary Lit elements
+import { LitElement, html, css } from 'lit';
+import { property } from 'lit/decorators.js';
+
+// Define a new component class
+class MyComponent extends LitElement {
+  // Define a reactive property using @property() decorator
+  @property({ type: String }) name = 'World';
+
+  // Define styles for the component. This is scoped to the component.
+  static styles = css`
+    :host {
+      display: block;
+      padding: 20px;
+      background-color: lightblue;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      width: fit-content;
+      text-align: center;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  `;
+
+  // Define the render method to display HTML
+  render() {
+    return html`
+      <h1>Hello, ${this.name}!</h1>
+      <button class="button" @click="${this.changeName}">Click me!</button>
+    `;
+  }
+
+  // Lifecycle method called when the component is updated
+  updated(changedProperties: Map<string | number | symbol, unknown>): void {
+    super.updated(changedProperties);
+    // Log when the name property changes
+    if (changedProperties.has('name')) {
+      console.log(`Name changed to: ${this.name}`);
+    }
+  }
+
+  // Event handler to change the name when button is clicked
+  changeName() {
+    this.name = this.name === 'World' ? 'Lit' : 'World';
+  }
+}
+
+// Register the component with the browser
+customElements.define('my-component', MyComponent);
+```
+
+### JavaScript example
+```javascript
+// Import necessary Lit elements
+import { LitElement, html, css } from 'lit';
+
+// Define a new component class
+class MyComponent extends LitElement {
+  // Reactive property
+  static properties = {
+    name: { type: String }
+  };
+
+  // Constructor to initialize the property
+  constructor() {
+    super();
+    this.name = 'World';
+  }
+
+  // Define styles for the component. Scoped to this component.
+  static styles = css`
+    :host {
+      display: block;
+      padding: 20px;
+      background-color: lightblue;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      width: fit-content;
+      text-align: center;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  `;
+
+  // Render method to define HTML structure
+  render() {
+    return html`
+      <h1>Hello, ${this.name}!</h1>
+      <button class="button" @click="${this.changeName}">Click me!</button>
+    `;
+  }
+
+  // Lifecycle method called when the component is updated
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    // Log the name property when it changes
+    if (changedProperties.has('name')) {
+      console.log(`Name changed to: ${this.name}`);
+    }
+  }
+
+  // Event handler to change the name when the button is clicked
+  changeName() {
+    this.name = this.name === 'World' ? 'Lit' : 'World';
+  }
+}
+
+// Register the component with the browser
+customElements.define('my-component', MyComponent);
+
+```
+Output:
+<my-component></my-component>
